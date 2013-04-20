@@ -27,7 +27,7 @@ Ext.application({
 
 	models: [],
 	views: [ 'Main' ],
-	controllers: [],
+	controllers: ['Twitter'],
 
 	icon: {
 		'57': 'resources/icons/Icon.png',
