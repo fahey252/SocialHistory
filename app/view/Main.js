@@ -1,7 +1,7 @@
 Ext.define('SocialHistory.view.Main', {
 	extend: 'Ext.tab.Panel',
 	xtype: 'main',
-	requires: [ 'Ext.TitleBar', 'Ext.Ajax' ],
+	requires: [ 'Ext.TitleBar' ],
 	config: {
 		fullscreen: true,
 		tabBarPosition: 'bottom',
@@ -17,7 +17,8 @@ Ext.define('SocialHistory.view.Main', {
 				title: 'Enter your Twitter handle',
 				instructions: 'Reaches out to the Twitter API to get your social data',
 				items: [ {
-					xtype: 'textfield',
+          xtype: 'textfield',
+				  name: 'twitterHandle',
 					label: 'Handle'
 				} ]
 			}, {
@@ -27,6 +28,8 @@ Ext.define('SocialHistory.view.Main', {
 				ui: 'confirm',
 				handler: function() {
 				  //button handler is bounded in controller/Twitter.js
+				  console.log("Form submit handler");
+				  
 				}
 			} ]
 		},{
@@ -34,9 +37,10 @@ Ext.define('SocialHistory.view.Main', {
 		 iconCls: 'user',
 		 xtype: 'panel',
 		 layout: 'vbox',
-		 html: "This app was created by Christopher Fahey",
 		 items: [{
-		   
+		   xtype: 'panel',
+		   html: "This app was created by Christopher Fahey",
+		   centered: true
 		 }]
 		}]
 	}

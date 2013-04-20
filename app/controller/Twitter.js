@@ -1,25 +1,25 @@
 Ext.define('SocialHistory.controller.Twitter', {
   extend: 'Ext.app.Controller',
+  requires: ['Ext.Ajax'],   //lazy instantiation of library
   config: {
+    refs: {
+      twitterSubmitButton: '#getTwitterData',
+      twitterHandle: "input[name=twitterHandle]"
+    },
     control: {
-      getTwitterDataController: {
+      twitterSubmitButton: {
         tap: 'getTwitterData'
       }
     },
-    refs: {
-      getTwitterDataController: '#getTwitterData'
-    },
   },
 
-  getTwitterData: function() {
+  getTwitterData: function(view, index, target, record, event) {
     console.log("Getting Data from Twitter");
 
-    // make ajax call to twitters api
-    // TODO: get users handle for what they typed in
     // TODO: validate users twitter handle and make sure it exists
-    // TODO: need to launch chrome with: open -a Google\ Chrome --args --disable-web-security because of CORS
-    var twitterApiUrl = "https://api.twitter.com/1/users/show.json" + 
-      "?screen_name=heyfaybaybay&include_entities=true";
+    var twitterHandle = this.getTwitterHandle()._value,   //grabs the value in the twitter handle field
+        twitterApiUrl = "https://api.twitter.com/1/users/show.json" + 
+          "?screen_name=" + twitterHandle;
 
     Ext.Ajax.request({
       url: twitterApiUrl,
@@ -37,8 +37,15 @@ Ext.define('SocialHistory.controller.Twitter', {
         console.log("Favourites Count: " + twitterResponse.favourites_count);
         console.log("Location: " + twitterResponse.location);
         console.log("Tweets: " + twitterResponse.statuses_count);
+        console.log("Profile Pic URL: " + twitterResponse.profile_image_url);
+    
         
         
+        /*
+        Ext.Viewport.add({
+          xtype: 'datepicker'
+        });
+        */
       },
       failure: function(conn, response, options, eOpts) {
         Ext.Msg.alert("Failed to retreived your data from Twitter");
