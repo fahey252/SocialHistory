@@ -22,12 +22,14 @@ Ext.Loader.setPath({
 Ext.application({
 	name: 'SocialHistory',
 
-	requires: [ 'Ext.MessageBox' ],
-	// profiles: ['Phone', 'Tablet'],
-
 	models: [],
 	views: [ 'Main'],
 	controllers: ['Twitter'],
+
+  //profiles: ['Phone', 'Tablet'],
+	//stores: ['SocialData'],
+	
+  requires: [ 'Ext.MessageBox' ],
 
 	icon: {
 		'57': 'resources/icons/Icon.png',
