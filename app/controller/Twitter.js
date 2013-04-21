@@ -8,16 +8,43 @@ Ext.define('SocialHistory.controller.Twitter', {
     },
     control: {
       twitterSubmitButton: {
-        tap: 'getTwitterData'
+        tap: 'getTwitterDataFromInputText'
       }
     },
+    routes: {   //sets up mapping between urls and controller actions... when go to url, action is called
+      'twitter/:handle': 'getTwitterDataHandleInUrl'          //example URL:  /#twitter/heyfaybaybay
+    }
   },
 
-  getTwitterData: function(view, index, target, record, event) {
-    console.log("Getting Data from Twitter");
+  /*
+   * Gets twitter data from any text input with a name=twitterHandle
+   */
+  getTwitterDataFromInputText: function() {
+    console.log("Getting Data from Twitter based on twitter handle in text box");
 
     // TODO: validate users twitter handle and make sure it exists
-    var twitterHandle = this.getTwitterHandle()._value,   //grabs the value in the twitter handle field
+    var twitterHandle = this.getTwitterHandle()._value;   //grabs the value in the twitter handle field
+   
+    getTwitterData(twitterHandle);
+  },
+  
+  /*
+   *   Gets a users data based on url such as:
+   *   http://<domain>/#twitter/handle
+   */
+  getTwitterDataHandleInUrl: function(handle) {
+    console.log("Getting Data from Twitter via url");
+    
+    getTwitterData(handle);
+  },
+  
+  /*
+   * Helper that gets a users twitter data based on a passed in twitter handle
+   */
+  getTwitterData: function(handle) {
+    
+    // TODO: validate users twitter handle and make sure it exists
+    var twitterHandle = handle,   //grabs the value from url
         twitterApiUrl = "https://api.twitter.com/1/users/show.json?screen_name=" + twitterHandle;
 
     //TODO: errors out when making cross server scripting calls with out insecure browsing
@@ -45,6 +72,7 @@ Ext.define('SocialHistory.controller.Twitter', {
           centered: true,
           html: '<h2>Your Twitter Stats:</h2> ' +
           '<ul>' + 
+            '<li><img src="' + picURL + '"/></li>' +
             '<li>Name: ' + name + '</li>' +
             '<li>Handle: ' + handle + '</li>' +
             '<li>Follower Count: ' + followerCount + '</li>' +
@@ -53,7 +81,6 @@ Ext.define('SocialHistory.controller.Twitter', {
             '<li>Favourites Count: ' + favouritesCount + '</li>' +
             '<li>Location: ' + location + '</li>' +
             '<li>Tweets: ' + tweets + '</li>' +
-            '<li><img src="' + picURL + '"/></li>' +
           '</ul>'
         });
         
@@ -64,6 +91,6 @@ Ext.define('SocialHistory.controller.Twitter', {
         Ext.Msg.alert("Failed to retreived your data from Twitter");
         console.log("Failed to retreived your data from Twitter " + response);
       }
-    });
   }
+  
 });
