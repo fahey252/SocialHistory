@@ -1,9 +1,9 @@
 Ext.define('SocialHistory.view.TwitterStats', {
   extend: 'Ext.Panel',
   xtype: 'twitterstats',
-  id: 'myTwitterStats',
-  cls: 'twitterStats',
   requires: [],
+  model: 'SocialData.model.TwitterUser',
+  
   config: {
     centered: true,
     tpl: [ '<h2>Your Twitter Stats:</h2> ',
@@ -19,8 +19,7 @@ Ext.define('SocialHistory.view.TwitterStats', {
               '<li>Tweets: {tweets}</li>',
           '</ul>' ],
     items: [ {
-      xtype: 'panel',
-      styleHtmlContent: true
+      xtype: 'panel'
     } ]
   },
   initialize: function() {
@@ -28,10 +27,9 @@ Ext.define('SocialHistory.view.TwitterStats', {
 
     this.element.on('tap', this.onTap, this);
   },
-
-  // this function is called whenever you tap on the image
   onTap: function() {
-    Ext.Msg.alert(this.getName(), this.getTwitterHandle());
+    var twitterData = this.getRecord().data;
+    Ext.Msg.alert(twitterData.name, "Thank you for viewing your Twitter social data.");
+    this.destroy();   //free up memory and remove from the DOM
   }
 });
-

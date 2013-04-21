@@ -1,7 +1,7 @@
 Ext.define('SocialHistory.view.Main', {
   extend: 'Ext.tab.Panel',
   xtype: 'main',
-  requires: [ 'Ext.TitleBar' ],
+  requires: [ 'Ext.TitleBar', 'Ext.form.FieldSet' ],
   config: {
     fullscreen: false,
     tabBarPosition: 'bottom',
@@ -20,9 +20,12 @@ Ext.define('SocialHistory.view.Main', {
         instructions: 'Reaches out to the Twitter API to get your social data',
         items: [ {
           xtype: 'textfield',
+          id: 'twitterHandle',
           name: 'twitterHandle',
-          label: 'Handle'
-        } ]
+          label: 'Handle',
+          placeHolder: 'Enter Twitter Handle'
+        }
+        ]
       }, {
         id: 'getTwitterData',
         xtype: 'button',
