@@ -1,7 +1,7 @@
 Ext.define('SocialHistory.view.Main', {
   extend: 'Ext.tab.Panel',
   xtype: 'main',
-  requires: [ 'Ext.carousel.Carousel', 'SocialHistory.view.TwitterForm', 'SocialHistory.view.About' ],
+  requires: [ 'Ext.carousel.Carousel', 'SocialHistory.view.TwitterForm', 'SocialHistory.view.TwitterFutureStats', 'SocialHistory.view.About' ],
   config: {
     fullscreen: true,
     tabBarPosition: 'bottom',
@@ -14,9 +14,14 @@ Ext.define('SocialHistory.view.Main', {
       layout: 'vbox',
 
       items: [ {
-        xtype: 'twitterform'
+        xtype: 'panel',
+        items: [{
+          xtype: 'twitterform'
+        }, {
+          xtype: 'twittercurrentstats'
+        }]
       }, {
-        xtype: 'twitterstats'
+        xtype: 'twitterfuturestats'
       } ]
     }, {
       xtype: 'about'

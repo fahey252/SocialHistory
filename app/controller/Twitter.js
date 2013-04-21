@@ -1,11 +1,12 @@
 Ext.define('SocialHistory.controller.Twitter', {
   extend: 'Ext.app.Controller',
-  requires: ['Ext.Ajax', 'SocialHistory.model.TwitterUser', 'SocialHistory.view.TwitterStats'],   //lazy instantiation of library
+  requires: ['Ext.Ajax', 'SocialHistory.model.TwitterUser', 'SocialHistory.view.TwitterCurrentStats'],   //lazy instantiation of library
   config: {
     refs: {
       socialHistoryContainer: '#SocialHistoryContainer',
       twitterSubmitButton: '#getTwitterData',
-      twitterHandle: "input[name=twitterHandle]"
+      twitterHandle: 'input[name=twitterHandle]',
+      currentStatsView: '#twittercurrentstats',
     },
     control: {
       twitterSubmitButton: {
@@ -82,9 +83,8 @@ Ext.define('SocialHistory.controller.Twitter', {
     var errors = twitterUser.validate();
     console.log('Is twitter user valid?', errors.isValid()); // returns 'false' as there were validation errors
     
-    var twitterView = Ext.create('SocialHistory.view.TwitterStats', {});
+    var twitterView = this.getCurrentStatsView();
     twitterView.setRecord(twitterUser);
-    Ext.Viewport.add(twitterView);
     
     //calculate tweetsPerDay
     var today = new Date(),
