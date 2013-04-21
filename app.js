@@ -26,7 +26,7 @@ Ext.application({
 	// profiles: ['Phone', 'Tablet'],
 
 	models: [],
-	views: [ 'Main' ],
+	views: [ 'Main'],
 	controllers: ['Twitter'],
 
 	icon: {

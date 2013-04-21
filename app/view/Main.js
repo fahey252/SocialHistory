@@ -3,7 +3,7 @@ Ext.define('SocialHistory.view.Main', {
 	xtype: 'main',
 	requires: [ 'Ext.TitleBar' ],
 	config: {
-		fullscreen: true,
+		fullscreen: false,
 		tabBarPosition: 'bottom',
 
 		items: [ {
@@ -28,8 +28,6 @@ Ext.define('SocialHistory.view.Main', {
 				ui: 'confirm',
 				handler: function() {
 				  //button handler is bounded in controller/Twitter.js
-				  console.log("Form submit handler");
-				  
 				}
 			} ]
 		},{
