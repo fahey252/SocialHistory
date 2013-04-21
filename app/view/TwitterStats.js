@@ -3,9 +3,11 @@ Ext.define('SocialHistory.view.TwitterStats', {
   xtype: 'twitterstats',
   requires: [],
   model: 'SocialData.model.TwitterUser',
+  id: 'twitterstats',
+  title: 'Twitter Stats',
+  instructions: 'Displays where a person\'s projected status will be in a given year',
   
   config: {
-    centered: true,
     tpl: [ '<h2>Your Twitter Stats:</h2> ',
             '<ul>',
               '<li><img src="{picURL}"/></li>',
@@ -19,6 +21,9 @@ Ext.define('SocialHistory.view.TwitterStats', {
               '<li>Tweets: {tweets}</li>',
           '</ul>' ],
     items: [ {
+      xtype: 'panel',
+      html: "Your Twitter Stats."
+    }, {
       xtype: 'panel'
     } ]
   },

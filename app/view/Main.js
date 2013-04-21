@@ -1,7 +1,7 @@
 Ext.define('SocialHistory.view.Main', {
   extend: 'Ext.tab.Panel',
   xtype: 'main',
-  requires: [ 'Ext.TitleBar', 'SocialHistory.view.TwitterForm' ],
+  requires: [ 'Ext.carousel.Carousel', 'SocialHistory.view.TwitterForm', 'SocialHistory.view.About' ],
   config: {
     fullscreen: true,
     tabBarPosition: 'bottom',
@@ -16,19 +16,10 @@ Ext.define('SocialHistory.view.Main', {
       items: [ {
         xtype: 'twitterform'
       }, {
-        xtype: 'panel',
-        html: 'second screen'
+        xtype: 'twitterstats'
       } ]
     }, {
-      title: 'About',
-      iconCls: 'user',
-      xtype: 'panel',
-      layout: 'vbox',
-      items: [ {
-        xtype: 'panel',
-        html: "This app was created by Christopher Fahey",
-        centered: true
-      } ]
+      xtype: 'about'
     } ]
   }
 });
