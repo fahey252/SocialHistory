@@ -1,39 +1,23 @@
 Ext.define('SocialHistory.view.Main', {
   extend: 'Ext.tab.Panel',
   xtype: 'main',
-  requires: [ 'Ext.TitleBar', 'Ext.form.FieldSet' ],
+  requires: [ 'Ext.TitleBar', 'SocialHistory.view.TwitterForm' ],
   config: {
-    fullscreen: false,
+    fullscreen: true,
     tabBarPosition: 'bottom',
 
     items: [ {
       id: 'SocialHistoryContainer',
       title: 'Twitter Stats',
       iconCls: 'user',
-      xtype: 'panel',
+      xtype: 'carousel',
       layout: 'vbox',
 
       items: [ {
-        id: "twitterContainer",
-        xtype: 'fieldset',
-        title: 'Enter your Twitter handle',
-        instructions: 'Reaches out to the Twitter API to get your social data',
-        items: [ {
-          xtype: 'textfield',
-          id: 'twitterHandle',
-          name: 'twitterHandle',
-          label: 'Handle',
-          placeHolder: 'Enter Twitter Handle'
-        }
-        ]
+        xtype: 'twitterform'
       }, {
-        id: 'getTwitterData',
-        xtype: 'button',
-        text: 'Get My Twitter Stat\'s',
-        ui: 'confirm',
-        handler: function() {
-          // button handler is bounded in controller/Twitter.js
-        }
+        xtype: 'panel',
+        html: 'second screen'
       } ]
     }, {
       title: 'About',
