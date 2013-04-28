@@ -1,12 +1,12 @@
 Ext.define('SocialHistory.controller.Twitter', {
   extend: 'Ext.app.Controller',
-  requires: ['Ext.Ajax', 'Ext.data.JsonP', 'SocialHistory.model.TwitterUser', 'SocialHistory.view.TwitterCurrentStats'],   //lazy instantiation of library
+  requires: ['Ext.data.JsonP', 'SocialHistory.model.TwitterUser', 'SocialHistory.view.TwitterCurrentStats'],   //lazy instantiation of library
+  id: 'twitterController',
   config: {
     refs: {
-      socialHistoryContainer: '#SocialHistoryContainer',
       twitterSubmitButton: '#getTwitterData',
       twitterHandle: 'input[name=twitterHandle]',
-      currentStatsView: '#twittercurrentstats',
+      currentStatsView: '#twittercurrentstats'
     },
     control: {
       twitterSubmitButton: {
@@ -43,8 +43,7 @@ Ext.define('SocialHistory.controller.Twitter', {
   },
   
   getTwitterData: function(handle) {
-    
-    // TODO: validate users twitter handle and make sure it exists
+
     var twitterHandle = handle,   //grabs the value from url
         twitterApiUrl = "https://api.twitter.com/1/users/show.json?screen_name=" + twitterHandle,
         twitterConroller = this;
@@ -71,9 +70,9 @@ Ext.define('SocialHistory.controller.Twitter', {
       followerCount: twitterResponse.followers_count,
       friendCount: twitterResponse.friends_count,
       createdAt: new Date(twitterResponse.created_at).toLocaleString(),
-      favouritesCount: twitterResponse.favourites_count,
+      favouriteCount: twitterResponse.favourites_count,
       location: twitterResponse.location,
-      tweets: twitterResponse.statuses_count,
+      tweetCount: twitterResponse.statuses_count,
       picURL: twitterResponse.profile_image_url
     });
     
@@ -82,15 +81,5 @@ Ext.define('SocialHistory.controller.Twitter', {
     
     var twitterView = this.getCurrentStatsView();
     twitterView.setRecord(twitterUser);
-    
-    //calculate tweetsPerDay
-    var today = new Date(),
-      twitterCreatationDate = new Date(twitterUser.get('createdAt')),
-      millisecondsInADay = 60*60*24*1000;
-      numberOfDaysHavingTwitter = (today - twitterCreatationDate)/millisecondsInADay,
-      tweetsPerDay = twitterUser.get('tweets')/numberOfDaysHavingTwitter,
-      projectedAmountOfTweets = tweetsPerDay * (365.25*20);   //TODO: don't hardcode number of years
-      
-      Ext.Msg.alert("Number of tweets in 20 years", projectedAmountOfTweets);
   }
 });

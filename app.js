@@ -24,7 +24,7 @@ Ext.application({
 
 	models: [],
 	views: [ 'Main'],
-	controllers: ['Twitter'],
+	controllers: ['Twitter', 'FutureTwitterStats'],    //add all controllers here, can't add controller in a view
 
   //profiles: ['Phone', 'Tablet'],
 	//stores: ['SocialData'],

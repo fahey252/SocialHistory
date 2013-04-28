@@ -7,11 +7,10 @@ Ext.define('SocialHistory.view.Main', {
     tabBarPosition: 'bottom',
 
     items: [ {
-      id: 'SocialHistoryContainer',
+      xtype: 'carousel',
+      id: 'socialCarousel',
       title: 'Twitter Stats',
       iconCls: 'user',
-      xtype: 'carousel',
-      layout: 'vbox',
 
       items: [ {
         xtype: 'panel',
@@ -21,7 +20,8 @@ Ext.define('SocialHistory.view.Main', {
           xtype: 'twittercurrentstats'
         }]
       }, {
-        xtype: 'twitterfuturestats'
+        xtype: 'twitterfuturestats',
+        id: 'twitterFutureStatsContainer'
       } ]
     }, {
       xtype: 'about'

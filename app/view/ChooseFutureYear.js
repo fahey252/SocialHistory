@@ -1,8 +1,7 @@
 Ext.define('SocialHistory.view.ChooseFutureYear', {
   extend: 'Ext.Panel',
   xtype: 'choosefutureyear',
-  requires: [],
-  
+  requires: ['Ext.Label'],
   id: 'choosefutureyear',
   title: 'Choose Future Year',
   information: 'Allows a user to chose some year in the future',
@@ -12,13 +11,14 @@ Ext.define('SocialHistory.view.ChooseFutureYear', {
     
     items: [{
       xtype: 'label',
-      text: 'Chose Future Year:'
+      html: 'Chose Future Year:'
     }, {
-      xtype: 'textfield' 
+      xtype: 'textfield',
+      name: 'year'
     }, {
       xtype: 'button',
+      id: 'futureYearButton',
       text: 'Go'
     }]
   }
-  
 });

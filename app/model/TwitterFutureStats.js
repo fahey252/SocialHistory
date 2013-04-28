@@ -3,13 +3,13 @@ Ext.define('SocialHistory.model.TwitterFutureStats', {
   
   config: {
     fields: [{
-      name: 'tweets',
+      name: 'tweetCount',
       type: 'integer'
     }, {
-      name: 'followers',
+      name: 'followerCount',
       type: 'integer'
     }, {
-      name: 'favourites',
+      name: 'favouriteCount',
       type: 'integer'
     }]
   }

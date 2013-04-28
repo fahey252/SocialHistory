@@ -18,7 +18,7 @@ Ext.define('SocialHistory.view.TwitterCurrentStats', {
               '<li>Created At: {createdAt}</li>',
               '<li>Favourites Count: {favouritesCount}</li>',
               '<li>Location: {location}</li>',
-              '<li>Tweets: {tweets}</li>',
+              '<li>Tweets: {tweetCount}</li>',
           '</ul>' ],
     items: [ {
       xtype: 'panel'

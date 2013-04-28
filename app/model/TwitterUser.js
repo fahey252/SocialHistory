@@ -17,13 +17,13 @@ Ext.define('SocialHistory.model.TwitterUser', {
       name: 'createdAt',
       type: 'string'
     }, {
-      name: 'favouritesCount',
+      name: 'favouriteCount',
       type: 'string'
     }, {
       name: 'location',
       type: 'string'
     }, {
-      name: 'tweets',
+      name: 'tweetCount',
       type: 'string'
     }, {
       name: 'picURL',
