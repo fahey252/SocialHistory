@@ -1,6 +1,6 @@
 Ext.define('SocialHistory.controller.Twitter', {
   extend: 'Ext.app.Controller',
-  requires: ['Ext.Ajax', 'SocialHistory.model.TwitterUser', 'SocialHistory.view.TwitterCurrentStats'],   //lazy instantiation of library
+  requires: ['Ext.Ajax', 'Ext.data.JsonP', 'SocialHistory.model.TwitterUser', 'SocialHistory.view.TwitterCurrentStats'],   //lazy instantiation of library
   config: {
     refs: {
       socialHistoryContainer: '#SocialHistoryContainer',
@@ -49,21 +49,18 @@ Ext.define('SocialHistory.controller.Twitter', {
         twitterApiUrl = "https://api.twitter.com/1/users/show.json?screen_name=" + twitterHandle,
         twitterConroller = this;
 
-    //TODO: errors out when making cross server scripting calls with out insecure browsing
-    Ext.Ajax.request({
+    //TODO: show spinner while making ajax call
+    Ext.data.JsonP.request({  //need JsonP, not ajax, for cross domain calls
       url: twitterApiUrl,
-      cors: true,   //needed to cross domain service calls
       success: function(response) {
         console.log("Successfully retreived " + twitterHandle + "'s data from Twitter");
         
-        var twitterResponse = JSON.parse(response.responseText);
-        
-        twitterConroller.showTwitterData(twitterResponse);
+        twitterConroller.showTwitterData(response);
       },
       failure: function(conn, response, options, eOpts) {
         Ext.Msg.alert("Failed to retreived your data from Twitter");
         console.log("Failed to retreived your data from Twitter " + response);
-      }
+      }      
     });
   },
   showTwitterData: function (twitterResponse) {

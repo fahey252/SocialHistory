@@ -1,7 +1,7 @@
 Ext.define('SocialHistory.view.TwitterCurrentStats', {
   extend: 'Ext.Panel',
   xtype: 'twittercurrentstats',
-  requires: [],
+  requires: ['SocialHistory.view.ChooseFutureYear'],
   model: 'SocialData.model.TwitterUser',
   id: 'twittercurrentstats',
   title: 'Twitter Current Stats',
@@ -21,20 +21,25 @@ Ext.define('SocialHistory.view.TwitterCurrentStats', {
               '<li>Tweets: {tweets}</li>',
           '</ul>' ],
     items: [ {
-      xtype: 'panel',
-      html: "Your Current Twitter Stats."
+      xtype: 'panel'
     }, {
       xtype: 'panel'
+    }, {
+      xtype: 'choosefutureyear'
     } ]
   },
   initialize: function() {
+    /*
     this.callParent(arguments);
 
     this.element.on('tap', this.onTap, this);
+    */
   },
   onTap: function() {
+    /*
     var twitterData = this.getRecord().data;
     Ext.Msg.alert(twitterData.name, "Thank you for viewing your Twitter social data.");
     this.destroy();   //free up memory and remove from the DOM
+    */
   }
 });

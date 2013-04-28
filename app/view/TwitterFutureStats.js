@@ -8,23 +8,29 @@ Ext.define('SocialHistory.view.TwitterFutureStats', {
   instructions: 'Displays a person\'s current social data on Twitter',
   
   config: {
-    tpl: [ '<h2>Your Future Twitter Stats:</h2> ',
-            '<ul>',
-              '<li><img src="{picURL}"/></li>',
-              '<li>Name: {name}</li>',
-              '<li>Handle: {handle}</li>',
-              '<li>Follower Count: {followerCount}</li>',
-              '<li>Friend Count: {friendCount}</li>',
-              '<li>Created At: {createdAt}</li>',
-              '<li>Favourites Count: {favouritesCount}</li>',
-              '<li>Location: {location}</li>',
-              '<li>Tweets: {tweets}</li>',
-          '</ul>' ],
+
     items: [ {
       xtype: 'panel',
       html: "Your Future Twitter Stats."
     }, {
-      xtype: 'panel'
+      xtype: 'panel',
+      html: 'In 20 years you will have...'    //TODO: calculate the number of years.
+    },{
+      xtype: 'panel',
+      layout: 'hbox',
+      items: [{
+        xtype: 'panel',
+        html: 'Number of tweets',
+        flex: 1
+      }, {
+        xtype: 'panel',
+        html: 'Number of followers',
+        flex: 1
+      }, {
+        xtype: 'panel',
+        html: 'Number of favourites',
+        flex: 1
+      }]
     } ]
   }
 });
