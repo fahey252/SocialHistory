@@ -7,7 +7,7 @@ Ext.define('SocialHistory.view.About', {
   instructions: 'Displays information about the app and its author.',
 
   config: {
-    iconCls: 'star',    //incase used in a tab panel
+    iconCls: 'settings',    //incase used in a tab panel
     title: 'About',
     
     items: [ {

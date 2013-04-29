@@ -1,6 +1,6 @@
 Ext.define('SocialHistory.controller.FutureTwitterStats', {
   extend: 'Ext.app.Controller',
-  requires: ['SocialHistory.view.ChooseFutureYear', 'SocialHistory.model.TwitterFutureStats'],
+  requires: ['SocialHistory.model.TwitterFutureStats'],
   config: {
     refs: {
       futureStatsContainer: '#twitterfuturestats',
@@ -26,19 +26,19 @@ Ext.define('SocialHistory.controller.FutureTwitterStats', {
     console.log("Calculate future Twitter Stats based in the year " + event.getParent().getComponent('year').getValue());
     
     var twitterUser =  Ext.getCmp('twittercurrentstats').getRecord().getData(),
-      futureYear = event.getParent().getComponent('year').getValue(),
+      inputFutureYear = event.getParent().getComponent('year').getValue(),
+      todaysDateInFutureYear = new Date().setFullYear(inputFutureYear),
       today = new Date(),
-      numberOfYears = futureYear - today.getFullYear(),
+      millisecondsInTheFuture = todaysDateInFutureYear - today,
       twitterCreatationDate = new Date(twitterUser.createdAt),
-      millisecondsInADay = 60*60*24*1000,
-      daysInAYear = 365.25,
-      numberOfDaysHavingTwitter = (today - twitterCreatationDate)/millisecondsInADay,
-      tweetsPerDay = twitterUser.tweetCount / numberOfDaysHavingTwitter,
-      followersPerDay = twitterUser.followerCount / numberOfDaysHavingTwitter,
-      favouritesPerDay = twitterUser.favouriteCount / numberOfDaysHavingTwitter,
-      projectedAmountOfTweets = tweetsPerDay * (daysInAYear * numberOfYears),
-      projectedAmountOfFollowers = followersPerDay * (daysInAYear * numberOfYears),
-      projectedAmountOfFavourites = favouritesPerDay * (daysInAYear * numberOfYears);
+      numberOfMillisecondsHavingTwitter = today - twitterCreatationDate,
+      milliscondFromCreateDateToFutureDate = numberOfMillisecondsHavingTwitter + millisecondsInTheFuture;
+      tweetsPerMillisecond = twitterUser.tweetCount / numberOfMillisecondsHavingTwitter,
+      followersPerMillisecond = twitterUser.followerCount / numberOfMillisecondsHavingTwitter,
+      favouritesPerMillisecond = twitterUser.favouriteCount / numberOfMillisecondsHavingTwitter,
+      projectedAmountOfTweets = (tweetsPerMillisecond * milliscondFromCreateDateToFutureDate),
+      projectedAmountOfFollowers = (followersPerMillisecond * milliscondFromCreateDateToFutureDate),
+      projectedAmountOfFavourites = (favouritesPerMillisecond * milliscondFromCreateDateToFutureDate);
     
     var futureStats = Ext.create('SocialHistory.model.TwitterFutureStats', {
       tweetCount: projectedAmountOfTweets,
@@ -46,7 +46,7 @@ Ext.define('SocialHistory.controller.FutureTwitterStats', {
       favouriteCount: projectedAmountOfFavourites
     });
     
-    this.setFutureStatsInView(futureStats, futureYear);
+    this.setFutureStatsInView(futureStats, inputFutureYear);
     
   },
   setFutureStatsInView: function(futureStats, year) {

@@ -5,7 +5,7 @@ Ext.define('SocialHistory.view.TwitterForm', {
 	id: "twitterFormContainer",
 	title: 'Collects a user\'s Twitter Handle',
   instructions: 'Reaches out to the Twitter API to get your social data',
-	
+
   config: {
     items: [ {
       xtype: 'textfield',
@@ -16,7 +16,7 @@ Ext.define('SocialHistory.view.TwitterForm', {
     }, {
       id: 'getTwitterData',
       xtype: 'button',
-      text: 'Get My Twitter Stat\'s',
+      text: 'Get Future Stat\'s',
       ui: 'confirm'
     } ]
   }

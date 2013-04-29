@@ -1,5 +1,5 @@
 Ext.define('SocialHistory.view.TwitterCurrentStats', {
-  extend: 'Ext.Panel',
+  extend: 'Ext.Container',
   xtype: 'twittercurrentstats',
   requires: ['SocialHistory.view.ChooseFutureYear'],
   model: 'SocialData.model.TwitterUser',
@@ -16,7 +16,7 @@ Ext.define('SocialHistory.view.TwitterCurrentStats', {
               '<li>Follower Count: {followerCount}</li>',
               '<li>Friend Count: {friendCount}</li>',
               '<li>Created At: {createdAt}</li>',
-              '<li>Favourites Count: {favouritesCount}</li>',
+              '<li>Favourites Count: {favouriteCount}</li>',
               '<li>Location: {location}</li>',
               '<li>Tweets: {tweetCount}</li>',
           '</ul>' ],

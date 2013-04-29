@@ -11,18 +11,24 @@ Ext.define('SocialHistory.view.Main', {
       id: 'socialCarousel',
       title: 'Twitter Stats',
       iconCls: 'user',
-
+      
+      //TODO: add submit form on enter key press
+      
       items: [ {
         xtype: 'container',
         id: 'currentTwitterStatsContainer',
+        scrollable: {
+          direction: 'vertical',
+          directionLock: true
+        },
         items: [ {
           xtype: 'twitterform'
-        }, {
-          xtype: 'twittercurrentstats'
         }, {
           // to be shown in controller on successfully getting twitter user
           xtype: 'choosefutureyear',
           hidden: true
+        }, {
+          xtype: 'twittercurrentstats'
         } ]
       }, {
         xtype: 'container',
@@ -30,7 +36,6 @@ Ext.define('SocialHistory.view.Main', {
           xtype: 'button',
           text: 'Back',
           iconCls: 'home',
-          ui: 'back',
           handler: function() {
             console.log("Go back to the home screen.");
             var socialCarousel = Ext.getCmp('socialCarousel');

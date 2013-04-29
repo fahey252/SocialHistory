@@ -1,7 +1,7 @@
 Ext.define('SocialHistory.view.ChooseFutureYear', {
-  extend: 'Ext.Panel',
+  extend: 'Ext.Container',
   xtype: 'choosefutureyear',
-  requires: ['Ext.Label'],
+  requires: [],
   title: 'Choose Future Year',
   information: 'Allows a user to chose some year in the future',
   
@@ -10,15 +10,16 @@ Ext.define('SocialHistory.view.ChooseFutureYear', {
     promptText: 'Choose Future Year',
     
     items: [{
-      xtype: 'label',
-      itemId: 'promptText',
-      html: this.promptText
-    }, {
       xtype: 'textfield',
-      itemId: 'year'
+      itemId: 'year',
+      label: 'Year',
+      placeHolder: this.promptText,
+      maxLength: 4,
+      flex: 1
     }, {
       xtype: 'button',
       itemId: 'calculateFutureYear',
+      ui: 'action-round',
       text: 'Go'
     }]
   },
@@ -26,7 +27,7 @@ Ext.define('SocialHistory.view.ChooseFutureYear', {
   constructor: function() {
     this.callParent(arguments);
     
-    this.getComponent('promptText').setHtml(this.config.promptText);
+    this.getComponent('year').setPlaceHolder(this.config.promptText);
   }
   
 });
