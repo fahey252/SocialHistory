@@ -13,12 +13,7 @@ Ext.define('SocialHistory.controller.FutureTwitterStats', {
       }
     },
     routes: {
-      'twitter/*/:year': {    //TODO: not working
-        action: 'calculateFutureStatsBasedOnYear',
-        conditions: {
-          ':year': '^\d{4}$'  //must be 4 digits
-        }
-      }
+
     }
   },
   

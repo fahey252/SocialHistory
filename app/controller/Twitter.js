@@ -13,13 +13,20 @@ Ext.define('SocialHistory.controller.Twitter', {
         tap: 'getTwitterDataFromInputText'
       }
     },
-    routes: { // sets up mapping between urls and controller actions... when go
-              // to url, action is called
+    routes: { // sets up mapping between urls and controller actions... 
       'twitter/:handle': {
-        action: 'getTwitterDataHandleInUrl', // example URL:
-                                              // /#twitter/heyfaybaybay
+        // example URL: /#twitter/heyfaybaybay
+        action: 'getTwitterDataHandleInUrl',
         conditions: {
-          ':handle': "[0-9a-zA-Z_]+"
+          ':handle': '[0-9a-zA-Z_]+'
+        }
+      },
+      'twitter/:handle/:year': {
+        // example URL: /#twitter/heyfaybaybay/2020
+        action: 'getTwitterDataHandleWithYearInUrl',
+        conditions: {
+          ':handle': '[0-9a-zA-Z_]+',
+          ':year': '\\d{4}'
         }
       }
     }
@@ -28,25 +35,24 @@ Ext.define('SocialHistory.controller.Twitter', {
   getTwitterDataFromInputText: function() {
     console.log("Getting Data from Twitter based on twitter handle in text box");
 
-    // TODO: validate users twitter handle and make sure it exists
-    var twitterHandle = this.getTwitterHandle()._value; // grabs the value in
-                                                        // the twitter handle
-                                                        // field
+    var twitterHandle = this.getTwitterHandle()._value;
 
     this.getTwitterData(twitterHandle);
   },
-
-  /*
-   * Gets a users data based on url such as: http://<domain>/#twitter/handle
-   */
   getTwitterDataHandleInUrl: function(handle) {
     console.log("Getting Data from Twitter via url");
 
     this.getTwitterData(handle);
   },
+  getTwitterDataHandleWithYearInUrl: function(handle, year) {
+    console.log("Getting Data from Twitter via url with year");
+    
+    this.getTwitterData(handle);
+  },
 
   getTwitterData: function(handle) {
-
+    console.log("Getting Data from Twitter for: " + handle);
+    
     var twitterHandle = handle, // grabs the value from url
     twitterApiUrl = "https://api.twitter.com/1/users/show.json?screen_name=" + twitterHandle, twitterConroller = this;
 
@@ -76,22 +82,21 @@ Ext.define('SocialHistory.controller.Twitter', {
       location: twitterResponse.location,
       tweetCount: twitterResponse.statuses_count,
       picURL: twitterResponse.profile_image_url
-    }), 
-    errors = twitterUser.validate(), 
-    isTwitterHandleValid = errors.isValid(), 
-    chooseFutureYearContainers = Ext.ComponentQuery.query('choosefutureyear'),    //get all instances 
+    }), errors = twitterUser.validate(), isTwitterHandleValid = errors.isValid(), chooseFutureYearContainers = Ext.ComponentQuery.query('choosefutureyear'), // get
+    // all
+    // instances
     twitterStatsView = this.getCurrentStatsView();
 
     console.log('Is twitter user valid?', isTwitterHandleValid);
 
     if (isTwitterHandleValid) {
       twitterStatsView.setRecord(twitterUser);
-      chooseFutureYearContainers.forEach(function (year) {
+      chooseFutureYearContainers.forEach(function(year) {
         year.show();
       });
     } else {
       twitterStatsView.setRecord({}); // clear
-      chooseFutureYearContainers.forEach(function (year) {
+      chooseFutureYearContainers.forEach(function(year) {
         year.hide();
       });
     }
