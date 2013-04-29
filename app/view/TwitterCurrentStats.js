@@ -24,8 +24,6 @@ Ext.define('SocialHistory.view.TwitterCurrentStats', {
       xtype: 'panel'
     }, {
       xtype: 'panel'
-    }, {
-      xtype: 'choosefutureyear'
     } ]
   },
   initialize: function() {

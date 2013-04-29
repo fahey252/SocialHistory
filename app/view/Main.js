@@ -13,15 +13,37 @@ Ext.define('SocialHistory.view.Main', {
       iconCls: 'user',
 
       items: [ {
-        xtype: 'panel',
-        items: [{
+        xtype: 'container',
+        id: 'currentTwitterStatsContainer',
+        items: [ {
           xtype: 'twitterform'
         }, {
           xtype: 'twittercurrentstats'
-        }]
+        }, {
+          // to be shown in controller on successfully getting twitter user
+          xtype: 'choosefutureyear',
+          hidden: true
+        } ]
       }, {
-        xtype: 'twitterfuturestats',
-        id: 'twitterFutureStatsContainer'
+        xtype: 'container',
+        items: [ {
+          xtype: 'button',
+          text: 'Back',
+          iconCls: 'home',
+          ui: 'back',
+          handler: function() {
+            console.log("Go back to the home screen.");
+            var socialCarousel = Ext.getCmp('socialCarousel');
+            socialCarousel.previous();
+          }
+        }, {
+          xtype: 'twitterfuturestats'
+        }, {
+          // to be shown in controller on successfully getting twitter user
+          xtype: 'choosefutureyear',
+          promptText: 'Choose another future year',
+          hidden: true
+        } ]
       } ]
     }, {
       xtype: 'about'
