@@ -1,2 +1,14 @@
+# Eclipse Files #
+*.settings
+*.project
+
+# OS Generated Files #
+.DS_Store
+.DS_Store?
+
+
+# Sencha Build Directory #
+build/
+
 
 
