@@ -1,0 +1,14 @@
+.x-carousel-item > div {
+  padding: 10px;
+}
+
+#getTwitterData {
+  margin-top: 10px;
+}
+
+#twittercurrentstats {
+  margin-top: 10px;
+}
+#twitterfuturestats {
+  margin: 15px 0;
+}
