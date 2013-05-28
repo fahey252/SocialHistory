@@ -1,7 +1,8 @@
 Ext.define('SocialHistory.view.Main', {
   extend: 'Ext.tab.Panel',
   xtype: 'main',
-  requires: [ 'Ext.carousel.Carousel', 'SocialHistory.view.TwitterForm', 'SocialHistory.view.TwitterFutureStats', 'SocialHistory.view.About' ],
+  requires: [ 'Ext.carousel.Carousel', 'SocialHistory.view.TwitterForm', 'SocialHistory.view.TwitterFutureStats', 
+              'SocialHistory.view.About', 'SocialHistory.view.ChooseFutureYear', 'SocialHistory.view.TwitterCurrentStats' ],
   config: {
     fullscreen: true,
     tabBarPosition: 'bottom',
@@ -11,9 +12,6 @@ Ext.define('SocialHistory.view.Main', {
       id: 'socialCarousel',
       title: 'Twitter Stats',
       iconCls: 'user',
-      
-      //TODO: add submit form on enter key press
-      
       items: [ {
         xtype: 'container',
         id: 'currentTwitterStatsContainer',

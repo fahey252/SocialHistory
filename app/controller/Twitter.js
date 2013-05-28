@@ -83,8 +83,6 @@ Ext.define('SocialHistory.controller.Twitter', {
       tweetCount: twitterResponse.statuses_count,
       picURL: twitterResponse.profile_image_url
     }), errors = twitterUser.validate(), isTwitterHandleValid = errors.isValid(), chooseFutureYearContainers = Ext.ComponentQuery.query('choosefutureyear'), // get
-    // all
-    // instances
     twitterStatsView = this.getCurrentStatsView();
 
     console.log('Is twitter user valid?', isTwitterHandleValid);

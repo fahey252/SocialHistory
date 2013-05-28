@@ -1,7 +1,7 @@
 Ext.define('SocialHistory.view.TwitterFutureStats', {
   extend: 'Ext.Panel',
   xtype: 'twitterfuturestats',
-  requires: [],
+  requires: [ ],
   model: 'SocialData.model.TwitterUser',
   id: 'twitterfuturestats',
   title: 'Twitter Future Stats',
